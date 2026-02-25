@@ -5,8 +5,38 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <input id="prompt" placeholder="type…" autofocus />
-  <pre id="output"></pre>
+  <div id="app">
+
+    <!-- header -->
+    <div id="header">
+      <div class="lyra-badge">
+        <div class="lyra-icon">✦</div>
+        <span class="lyra-name">Lyra</span>
+      </div>
+      <button id="btn-close" title="Hide (Esc)">✕</button>
+    </div>
+
+    <!-- stage: idle hint OR answer card -->
+    <div id="stage">
+      <div id="idle">
+        <div class="idle-icon">✦</div>
+        <p>Halo! Saya <strong>Lyra</strong>, asisten pribadi kamu.<br>Tanyakan apa saja&hellip;</p>
+      </div>
+
+      <div id="context-query"></div>
+      <div id="answer-card">
+        <div id="answer-text"></div>
+      </div>
+    </div>
+
+    <!-- input -->
+    <div id="input-bar">
+      <input id="prompt" placeholder="Tanyakan sesuatu&hellip;" autofocus />
+      <button id="btn-send">&#x2192;</button>
+    </div>
+
+  </div>
+
   <script src="renderer.js"></script>
 </body>
 </html>

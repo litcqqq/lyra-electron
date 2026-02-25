@@ -1,28 +1,57 @@
 {
   "name": "lyra-electron",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lyra — personal AI assistant",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "make-icon": "node scripts/make-icon.js",
+    "prestart": "node scripts/make-icon.js",
+    "start": "electron .",
+    "prebuild": "node scripts/make-icon.js",
+    "build": "electron-builder",
+    "build:portable": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "com.litcq.lyra",
+    "productName": "Lyra",
+    "copyright": "Copyright © 2026 litcq",
+    "asar": false,
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!scripts/**",
+      "!**/*.map",
+      "!node_modules/.cache/**"
+    ],
+    "extraResources": [
+      { "from": ".env", "to": ".env" }
+    ],
+    "win": {
+      "icon": "assets/icon.png",
+      "target": [
+        { "target": "dir", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "deleteAppDataOnUninstall": false
+    },
+    "directories": {
+      "output": "dist",
+      "buildResources": "build-res"
+    }
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/litcqqq/lyra-electron.git"
   },
-  "keywords": [
-    "electron",
-    "bot"
-  ],
+  "keywords": ["electron", "bot"],
   "author": "litcq",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/litcqqq/lyra-electron/issues"
-  },
-  "homepage": "https://github.com/litcqqq/lyra-electron#readme",
   "devDependencies": {
-    "electron": "^40.6.1"
+    "electron": "^40.6.1",
+    "electron-builder": "^26.8.1"
   },
   "dependencies": {
     "dotenv": "^17.3.1"
