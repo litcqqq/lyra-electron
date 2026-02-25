@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 12px;
+  background: rgba(20,20,20,0.85);
+  color: #eee;
+  font-family: system-ui, monospace;
+}
+
+input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+pre {
+  margin-top: 8px;
+  white-space: pre-wrap;
+}

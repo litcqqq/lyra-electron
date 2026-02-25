@@ -1,0 +1,30 @@
+{
+  "name": "lyra-electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/litcqqq/lyra-electron.git"
+  },
+  "keywords": [
+    "electron",
+    "bot"
+  ],
+  "author": "litcq",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/litcqqq/lyra-electron/issues"
+  },
+  "homepage": "https://github.com/litcqqq/lyra-electron#readme",
+  "devDependencies": {
+    "electron": "^40.6.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  }
+}
