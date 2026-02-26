@@ -262,3 +262,151 @@ body {
 }
 #btn-send:hover  { opacity: 0.85; }
 #btn-send:active { transform: scale(0.92); }
+
+/* ── stats overlay ───────────────────────────────────────────── */
+#stats-panel {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 16px;
+  gap: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 100;
+}
+#stats-panel.visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+#stats-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0 0;
+  -webkit-app-region: drag;
+}
+.stats-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+#btn-stats-close {
+  -webkit-app-region: no-drag;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  transition: color 0.15s, background 0.15s;
+}
+#btn-stats-close:hover { color: var(--text); background: var(--border-soft); }
+
+#stats-summary {
+  display: flex;
+  gap: 10px;
+}
+.stat-chip {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.chip-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.chip-val {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+#token-chart {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  width: 100%;
+  height: 160px;
+  display: block;
+}
+
+#chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--muted-2);
+  padding-left: 2px;
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+#chart-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--muted);
+  pointer-events: none;
+  top: 180px;
+}
+
+/* ── action toasts ───────────────────────────────────────────── */
+#toast-area {
+  position: fixed;
+  bottom: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.action-toast {
+  background: linear-gradient(135deg, #1e2740 0%, #0e1320 100%);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: #a5b4fc;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,102,241,0.2);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.action-toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

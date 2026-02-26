@@ -46,6 +46,11 @@ function getWin() {
 
 function registerShortcut() {
   globalShortcut.register("Control+Space", toggleWindow);
+  globalShortcut.register("Control+Shift+Space", () => {
+    if (!win) return;
+    if (!win.isVisible()) { win.show(); win.focus(); }
+    win.webContents.send("toggle-stats");
+  });
 }
 
 module.exports = { createWindow, toggleWindow, getWin, registerShortcut };
