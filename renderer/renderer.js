@@ -1,15 +1,69 @@
 const input       = document.getElementById("prompt");
 const btnClose    = document.getElementById("btn-close");
 const btnSend     = document.getElementById("btn-send");
-const btnStatsClose = document.getElementById("btn-stats-close");
 const idle        = document.getElementById("idle");
 const contextQ    = document.getElementById("context-query");
 const answerCard  = document.getElementById("answer-card");
 const answerText  = document.getElementById("answer-text");
 const toastArea   = document.getElementById("toast-area");
-const statsPanel  = document.getElementById("stats-panel");
-const chartCanvas = document.getElementById("token-chart");
-const chartEmpty  = document.getElementById("chart-empty");
+
+// ── helpers ─────────────────────────────────────────────────────────────────
+function showTyping() {
+  answerText.innerHTML =
+    `<div class="typing-dots"><span></span><span></span><span></span></div>`;
+}
+
+function showActionToast(label) {
+  const t = document.createElement("div");
+  t.className   = "action-toast";
+  t.textContent = "✓ " + label;
+  toastArea.appendChild(t);
+  requestAnimationFrame(() => t.classList.add("visible"));
+  setTimeout(() => {
+    t.classList.remove("visible");
+    t.addEventListener("transitionend", () => t.remove(), { once: true });
+  }, 3000);
+}
+
+// ── submit ─────────────────────────────────────────────────────────────────
+async function submit() {
+  const prompt = input.value.trim();
+  if (!prompt) return;
+
+  input.value = "";
+  input.disabled = true;
+  btnSend.disabled = true;
+
+  idle.style.display = "none";
+  contextQ.textContent = prompt;
+  contextQ.classList.add("visible");
+  answerCard.classList.add("visible");
+  showTyping();
+
+  const res = await window.lyra.ask(prompt);
+
+  const text    = typeof res === "object" ? res.text    : res;
+  const actions = typeof res === "object" ? res.actions : [];
+
+  for (const a of (actions || [])) showActionToast(a);
+
+  answerCard.style.animation = "none";
+  answerCard.offsetHeight;
+  answerCard.style.animation = "";
+
+  answerText.textContent = text;
+  input.disabled = false;
+  btnSend.disabled = false;
+  input.focus();
+}
+
+btnClose.addEventListener("click", () => window.lyra.hide());
+btnSend.addEventListener("click", submit);
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter")  submit();
+  if (e.key === "Escape") window.lyra.hide();
+});
 
 // ── toast ───────────────────────────────────────────────────────────────────
 function showTyping() {

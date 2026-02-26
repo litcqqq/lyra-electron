@@ -40,34 +40,6 @@
   <!-- action permission toasts (outside #app so they overlay) -->
   <div id="toast-area"></div>
 
-  <!-- stats overlay -->
-  <div id="stats-panel" aria-hidden="true">
-    <div id="stats-header">
-      <span class="stats-title">Token Usage</span>
-      <button id="btn-stats-close">✕</button>
-    </div>
-    <div id="stats-summary">
-      <div class="stat-chip" id="chip-total">
-        <span class="chip-label">Total</span>
-        <span class="chip-val" id="val-total">0</span>
-      </div>
-      <div class="stat-chip" id="chip-requests">
-        <span class="chip-label">Requests</span>
-        <span class="chip-val" id="val-requests">0</span>
-      </div>
-      <div class="stat-chip" id="chip-avg">
-        <span class="chip-label">Avg / req</span>
-        <span class="chip-val" id="val-avg">0</span>
-      </div>
-    </div>
-    <canvas id="token-chart" width="480" height="160"></canvas>
-    <div id="chart-legend">
-      <span class="legend-dot" style="background:#6366f1"></span><span>Completion</span>
-      <span class="legend-dot" style="background:#2d3a5e"></span><span>Prompt</span>
-    </div>
-    <div id="chart-empty">Belum ada data token.</div>
-  </div>
-
   <script src="renderer.js"></script>
 </body>
 </html>

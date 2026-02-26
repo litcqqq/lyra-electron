@@ -5,6 +5,4 @@ contextBridge.exposeInMainWorld("lyra", {
   hide: () => ipcRenderer.send("hide-window"),
   getHistory: () => ipcRenderer.invoke("get-history"),
   pushHistory: (item) => ipcRenderer.send("push-history", item),
-  getTokenHistory: () => ipcRenderer.invoke("get-token-history"),
-  onToggleStats: (cb) => ipcRenderer.on("toggle-stats", cb),
 });
